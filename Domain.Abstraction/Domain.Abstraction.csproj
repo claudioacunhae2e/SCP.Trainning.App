@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="E2E.SCP.RegressionModel" Version="1.0.2" />
-    <PackageReference Include="E2E.SCP.RegressionModel.Abstraction" Version="1.0.7" />
+    <PackageReference Include="E2E.SCP.RegressionModel" Version="1.0.4" />
     <PackageReference Include="Old.42.SCP.Domain.Abstractions.Bases" Version="1.0.6" />
   </ItemGroup>
 

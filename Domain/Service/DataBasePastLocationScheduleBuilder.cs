@@ -22,7 +22,6 @@ namespace Domain.Service
             _DataBaseAccess = dataBaseAccess;
         }
 
-        private const decimal _Tolerance = 0.1m;
         private const string _QueryBase = @"
 			WITH LocationDailySales AS (
 			  SELECT 
@@ -37,7 +36,7 @@ namespace Domain.Service
 			LocationTolerance AS (
 			  SELECT 
 					 LocationDailySales.Location Location, 
-					 (AVG(LocationDailySales.Revenue) * @Tolerance) Tolerance
+					 (AVG(LocationDailySales.Revenue) * 0.1) Tolerance
 				FROM LocationDailySales
 			GROUP BY LocationDailySales.Location
 			)
@@ -102,14 +101,10 @@ namespace Domain.Service
         private IEnumerable<(long Location, DateTime Date)> GetSchedules()
         {
             IEnumerable<(long Location, DateTime Date)> result;
-            var param = new
-            {
-                Tolerance = _Tolerance
-            };
 
             using (var conn = _DataBaseAccess.Get())
             {
-                result = conn.Query(_QueryBase, _Map, param, splitOn: "Location,Date", commandTimeout: 0);
+                result = conn.Query(_QueryBase, _Map, splitOn: "Location,Date", commandTimeout: 0);
             }
 
             return result;
