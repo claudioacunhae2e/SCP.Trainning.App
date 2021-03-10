@@ -121,6 +121,12 @@ namespace Domain.Service
             var counter = new IncrementThreadSafe();
             var itensCounter = modelStart.Itens.Count();
 
+            //foreach (var item in modelStart.Itens)
+            //{
+            //    TrainingProcess(new TrainingAppServiceModel(itensCounter, item, modelStart.ModelTrainer, watch), counter, decisions).GetAwaiter().GetResult();
+            //}
+
+
             Parallel.ForEach(
                 modelStart.Itens,
                 _ParalelOption,
